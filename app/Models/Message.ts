@@ -7,7 +7,7 @@ export default class Message extends BaseModel {
   public id: number;
 
   @column()
-  public userId: number;
+  public userId: string;
 
   @column()
   public title: string;
