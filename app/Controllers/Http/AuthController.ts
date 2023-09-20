@@ -1,3 +1,15 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class AuthController {}
+export default class AuthController {
+    public async register({}: HttpContextContract){
+
+    }
+
+    public async login({}: HttpContextContract){
+        
+    }
+
+    public async logout({}: HttpContextContract){
+        
+    }
+}
