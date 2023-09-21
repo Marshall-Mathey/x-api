@@ -6,12 +6,14 @@ import {
   BaseModel,
   HasMany,
   hasMany,
+  beforeCreate,
 } from "@ioc:Adonis/Lucid/Orm";
 import Message from "./Message";
+import { v4 as uuid } from "uuid";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public id: number;
+  public id: string;
 
   @column()
   public username: string;
@@ -39,6 +41,14 @@ export default class User extends BaseModel {
 
   @hasMany(() => Message)
   public messages: HasMany<typeof Message>;
+
+  /**
+   * The @beforeCreate() method generates and assigns a unique UUID as the primary key for a User model instance before saving it to the database. This ensures that each user is uniquely identified by an UUID 
+   */
+  @beforeCreate()
+  public static assignUuid(user: User) {
+    user.id = uuid();
+  }
 
   @beforeSave()
   public static async hashPassword(user: User) {
